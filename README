@@ -1,0 +1,28 @@
+/* Bagas Timur 333CA */
+/*      Tema 2       */
+
+Pentru aceasta tema am folosit scheletul de laborator(mentionez ca e 
+identic) la care am adaugat o functie sau doua pentru debug.
+
+Am modularizat tema prin crearea a 3 Workeri specializati pentru
+Map, Reduce si Compare, la care se alatura tipurile de taskuri
+corespunzatoare. Taskurile extind o clasa de baza Task si pot fi
+adaugate in workpool-ul din laborator pe baza de template.
+
+Pentru citirea din fisier am folosit RandomAccessFile.
+
+Algoritmul pentru definirea cuvintelor in cazul impartirii taskurilor
+la mijlocul unui cuvant se prezinta in felul urmator:
+- daca nu sunt la inceputul fisierului, citesc din fisier de la offset - 1
+ca sa pot vedea daca am inceput de la mijloc
+- elimin partea anterioara care va fi tratata de alt task
+- ma uit in continuarea dimensiunii taskului sa vad daca se continua ultimul
+cuvant
+- daca da, il includ si pe el in string
+- impart stringul in tokenuri cu stringTokenizer
+
+Partea de Reduce si Compare e destul de banala, fiind destul de straight-forward, 
+fara complicatii algoritmice.
+
+Intre cele 3 etape, inchid threadurile deschise si deschid altele corespunzatoare
+workerilor etapei urmatoare.
